@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_211241) do
+ActiveRecord::Schema.define(version: 2021_02_22_224257) do
 
   create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_211241) do
     t.datetime "updated_at", null: false
     t.decimal "latitude", precision: 15, scale: 13
     t.decimal "longitude", precision: 15, scale: 13
+    t.string "state"
   end
 
 end
