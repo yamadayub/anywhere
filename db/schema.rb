@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_224257) do
+ActiveRecord::Schema.define(version: 2021_02_25_203854) do
 
   create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -25,4 +25,15 @@ ActiveRecord::Schema.define(version: 2021_02_22_224257) do
     t.string "state"
   end
 
+  create_table "videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "video_id"
+    t.string "title"
+    t.text "embed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "places_id"
+    t.index ["places_id"], name: "index_videos_on_places_id"
+  end
+
+  add_foreign_key "videos", "places", column: "places_id"
 end

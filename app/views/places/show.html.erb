@@ -1,5 +1,7 @@
+<!-- Map -->
 <div id="map"></div>
 
+<!-- Place Description -->
 <h3>Place: <%= @place.name%></h3>
 <h3>Country: <%= @place.country%></h3>
 <h3>State: <%= @place.state%></h3>
@@ -7,32 +9,37 @@
 <h3>Latitude: <%= @place.latitude%></h3>
 <h3>Longitude: <%= @place.longitude%></h3>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <style type="text/css">
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 50%;
-      }
+<!-- Embed Videos -->
+<% @videos.each do|video| %>
+<%= video(video_id: video.video_id)  %>
+<% end %>
 
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <script>
-      let map;
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    height: 50%;
+  }
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: <%= @place.latitude%>, lng: <%= @place.longitude%> },
-          zoom: 16,
-        });
-      }
-    </script>
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<script>
+  let map;
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap&libraries=&v=weekly" async></script>
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: <%= @place.latitude%>, lng: <%= @place.longitude%> },
+      zoom: 16,
+    });
+  }
+</script>
+
+<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap&libraries=&v=weekly" async></script>
