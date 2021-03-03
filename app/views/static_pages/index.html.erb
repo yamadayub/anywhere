@@ -1,3 +1,12 @@
-<div>
-  <%= image_tag 'doors.png' %>
+<div class="container-fluid">
+  <div class="row">
+    <% @places.each do |place| %>
+      <div class="col-sm-4 col-lg-2 bg-white" align='center'>
+        <%= link_to place_path(place.id) do %>
+          <%= image_tag 'door_green_s.png', :size => '180x280' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
+

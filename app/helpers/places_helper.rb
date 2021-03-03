@@ -3,11 +3,12 @@ module PlacesHelper
   iframe = content_tag(
     :iframe,
     '', # empty body
-    width: 560,
-    height: 315,
+    width: 1120,
+    height: 700,
     src: "https://www.youtube.com/embed/#{opts[:video_id]}",
     frameborder: 0,
-    allowfullscreen: true
+    allowfullscreen: true,
+    class: "youtube"
   )
   content_tag(:div, iframe, class: 'youtube-container')
   end

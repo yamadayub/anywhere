@@ -1,18 +1,25 @@
+<!-- First Videos -->
+<div id="top_video">
+<%= video(video_id: @videos.first.video_id)  %>
+</div>
+
+<!-- Place Description -->
+<button type="button" class="btn btn-primary">Place: <%= @place.name%></button>
+<button type="button" class="btn btn-secondary">Country: <%= @place.country%></button>
+<button type="button" class="btn btn-warning">State: <%= @place.state%></button>
+<button type="button" class="btn btn-danger">City: <%= @place.city%></button>
+<button type="button" class="btn btn-info">Latitude: <%= @place.latitude%></button>
+<button type="button" class="btn btn-dark">Longitude: <%= @place.longitude%></button>
+
 <!-- Map -->
 <div id="map"></div>
 
-<!-- Place Description -->
-<h3>Place: <%= @place.name%></h3>
-<h3>Country: <%= @place.country%></h3>
-<h3>State: <%= @place.state%></h3>
-<h3>City: <%= @place.city%></h3>
-<h3>Latitude: <%= @place.latitude%></h3>
-<h3>Longitude: <%= @place.longitude%></h3>
-
 <!-- Embed Videos -->
-<% @videos.each do|video| %>
-<%= video(video_id: video.video_id)  %>
-<% end %>
+<div id="other_videos">
+  <% @videos.each_with_index do|video,i| %>
+    <%= video(video_id: video.video_id) unless i == 0 %>
+  <% end %>
+</div>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <style type="text/css">
