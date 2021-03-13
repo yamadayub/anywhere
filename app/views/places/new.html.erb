@@ -1,0 +1,27 @@
+<%= form_with model: @place do |p| %>
+  <p class="form-group field">
+    <%= p.label :name, class: "control-label" %>
+    <%= p.text_field :name, class: "form-control" %>
+  </p>
+  <p class="form-group field">
+    <%= p.label :country, class: "control-label" %>
+    <%= p.text_area :country, class: "form-control" %>
+  </p>
+  <p class="form-group field">
+    <%= p.label :state, class: "control-label" %>
+    <%= p.text_area :state, class: "form-control" %>
+  </p>
+  <p class="form-group field">
+    <%= p.label :city, class: "control-label" %>
+    <%= p.text_area :city, class: "form-control" %>
+  </p>
+  <p class="form-group field">
+    <%= p.label :latitude, class: "control-label" %>
+    <%= p.text_area :latitude, class: "form-control" %>
+  </p>
+  <p class="form-group field">
+    <%= p.label :longitude, class: "control-label" %>
+    <%= p.text_area :longitude, class: "form-control" %>
+  </p>
+  <%= p.submit %>
+<% end %>

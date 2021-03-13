@@ -1,7 +1,12 @@
 <!-- First Videos -->
+
 <div id="top_video">
-<%= video(video_id: @videos.first.video_id)  %>
+  <% if @videos.present? %>
+    <%= video(video_id: @videos.first.video_id)  %>
+  <% else %>
+  <% end %>
 </div>
+
 
 <!-- Place Description -->
 <button type="button" class="btn btn-primary">Place: <%= @place.name%></button>
@@ -16,8 +21,11 @@
 
 <!-- Embed Videos -->
 <div id="other_videos">
-  <% @videos.each_with_index do|video,i| %>
-    <%= video(video_id: video.video_id) unless i == 0 %>
+  <% if @videos.present? %>
+    <% @videos.each_with_index do|video,i| %>
+      <%= video(video_id: video.video_id) unless i == 0 %>
+    <% end %>
+  <% else %>
   <% end %>
 </div>
 
