@@ -5,7 +5,6 @@
   </p>
   <p class="form-group field">
     <%= v.label :places_id, class: "control-label" %>
-    <!--<%= v.text_field :places_id, class: "form-control" %>-->
     <%= v.collection_select :places_id, @places, :id, :name, class: "form-control" %>
   </p>
   <%= v.submit %>
