@@ -57,9 +57,9 @@
        
       //マーカー
       var marker;
-       
+    
       // geocoder.geocode()でPositionを緯度経度を取得
-      geocoder.geocode( { 'address': address}, function(results, status) {
+      geocoder.geocode({'address':  address, 'region':   'us'}, function(results, status) {
         // ジオコーディングが成功した場合
         if (status == google.maps.GeocoderStatus.OK) {
           // 変換した緯度・経度情報を地図の中心に表示
@@ -69,9 +69,9 @@
           document.getElementById('longitude').value=results[0].geometry.location.lng();
           //表示している地図上の住所
           document.getElementById('name').value=document.getElementById('address').value
-          document.getElementById('city').value=results[0].address_components[2].long_name
-          document.getElementById('state').value=results[0].address_components[4].long_name
-          document.getElementById('country').value=results[0].address_components[5].long_name
+          document.getElementById('city').value=results[0].formatted_address
+          document.getElementById('state').value=results[0].formatted_address
+          document.getElementById('country').value=results[0].formatted_address
           console.dir(results);
           // マーカー設定
           marker = new google.maps.Marker({

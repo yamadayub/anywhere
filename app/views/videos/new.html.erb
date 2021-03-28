@@ -1,11 +1,28 @@
 <%= form_with model: @video do |v| %>
   <p class="form-group field">
-    <%= v.label :video_id, class: "control-label" %>
+    <%= v.label :video_id, 'Youtube Video ID', class: "control-label" %>
     <%= v.text_field :video_id, class: "form-control" %>
   </p>
   <p class="form-group field">
-    <%= v.label :places_id, class: "control-label" %>
+    <%= v.label :places_id, 'Place', class: "control-label" %>
     <%= v.collection_select :places_id, @places, :id, :name, class: "form-control" %>
   </p>
-  <%= v.submit %>
+  <%= v.submit 'Add A Video To The Place' %>
 <% end %>
+
+<br>
+<%= form_with url: videos_search_path, method: 'GET' do |v| %>
+  <p class="form-group field">
+    <%= v.label :keyword, 'Keyword', class: "control-label" %>
+    <%= v.text_field :keyword, class: "form-control" %>
+  </p>
+  <%= v.submit 'Search' %>
+<% end %>
+
+<br>
+
+<div id="video_list">
+  　<div id="searched_list"></div>
+</div>
+
+

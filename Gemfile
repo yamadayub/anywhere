@@ -40,6 +40,7 @@ gem 'pry-rails'
 gem 'dotenv-rails'
 gem 'jquery-rails'
 gem 'bootstrap'
+gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

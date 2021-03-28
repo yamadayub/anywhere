@@ -1,0 +1,18 @@
+load_videos = `\
+  <% if @youtube_data.present? %>\
+    <input type="button" id="select_button" value="select this video" />\
+    <% @youtube_data.items.each do |item| %>\
+      <% snippet = item.snippet %>\
+      <p><%= radio_button(:video, :video_id, item.id.video_id) %><%= snippet.title %></p>\
+      <div><iframe width="560" height="315" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\</div>\
+    <% end %>\
+  <% else %>\
+  <% end %>\
+  `;
+
+
+$("#searched_list").replaceWith(load_videos);
+$("#select_button").click(function() {
+		const str1 = $('input:radio[name="video[video_id]"]:checked').val();
+		document.getElementById('video_video_id').value=str1;
+	});
