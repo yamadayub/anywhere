@@ -1,4 +1,5 @@
 load_videos = `\
+　<div id="searched_list"></div>\
   <% if @youtube_data.present? %>\
     <input type="button" id="select_button" value="select this video" />\
     <% @youtube_data.items.each do |item| %>\
@@ -8,6 +9,7 @@ load_videos = `\
     <% end %>\
   <% else %>\
   <% end %>\
+  </div>\
   `;
 
 
