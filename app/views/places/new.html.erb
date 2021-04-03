@@ -31,7 +31,7 @@
   </p>
   <p class="form-group field">
     <%= pl.label :latitude, class: "control-label" %>
-    <%= pl.text_field :latitude, class: "form-control", id: "latidude" %>
+    <%= pl.text_field :latitude, class: "form-control", id: "latitude" %>
   </p>
   <p class="form-group field">
     <%= pl.label :longitude, class: "control-label" %>
@@ -65,7 +65,7 @@
           // 変換した緯度・経度情報を地図の中心に表示
           map.setCenter(results[0].geometry.location);
           //表示している地図上の緯度経度
-          document.getElementById('latidude').value=results[0].geometry.location.lat();
+          document.getElementById('latitude').value=results[0].geometry.location.lat();
           document.getElementById('longitude').value=results[0].geometry.location.lng();
           //表示している地図上の住所
           document.getElementById('name').value=document.getElementById('address').value
@@ -91,7 +91,7 @@
       
       function getClickLatLng(lat_lng, map) {
         //マーカーの緯度経度でUpdate
-        document.getElementById('latidude').value=lat_lng.lat();
+        document.getElementById('latitude').value=lat_lng.lat();
         document.getElementById('longitude').value=lat_lng.lng();
 
         // マーカーを設置
@@ -130,7 +130,7 @@
       }     
     }; //return
    
-  })();
+  })(); //即実行してgetMapを作成
   getMap.getAddress();
 
   

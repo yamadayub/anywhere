@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_033301) do
+ActiveRecord::Schema.define(version: 2021_04_01_205425) do
 
   create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "country"
     t.string "city"
-    t.string "district"
     t.string "map_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,11 +26,11 @@ ActiveRecord::Schema.define(version: 2021_02_28_033301) do
 
   create_table "videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "video_id"
-    t.string "title"
-    t.text "embed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "places_id"
+    t.decimal "latitude", precision: 15, scale: 13
+    t.decimal "longitude", precision: 15, scale: 13
     t.index ["places_id"], name: "index_videos_on_places_id"
   end
 

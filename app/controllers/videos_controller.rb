@@ -40,6 +40,14 @@ class VideosController < ApplicationController
     # render 'videos/new'
   end
   
+  def place_search(place_params)
+    @place = Place.find(place_params[:id])
+  end
+
+  def place_params
+    params.require(:place).permit(:id)
+  end  
+  
   def video_params
     params.require(:video).permit(:video_id,:places_id)
   end
