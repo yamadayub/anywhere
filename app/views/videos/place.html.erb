@@ -12,11 +12,11 @@
   </p>
   <p class="form-group field">
     <%= v.label :latitude, 'Latitude', class: "control-label" %>
-    <%= v.text_field :latitude, class: "form-control" %>
+    <%= v.text_field :latitude, value: @place.latitude, class: "form-control" %>
   </p>
   <p class="form-group field">
     <%= v.label :longitude, 'Latitude', class: "control-label" %>
-    <%= v.text_field :longitude, class: "form-control" %>
+    <%= v.text_field :longitude, value: @place.longitude, class: "form-control" %>
   </p>
   <%= v.submit 'Add A Video To The Place' %>
 <% end %>
