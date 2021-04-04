@@ -1,6 +1,5 @@
 class VideosController < ApplicationController
   def new
-    @video = Video.new
     @places = Place.all
   end
 
@@ -16,7 +15,7 @@ class VideosController < ApplicationController
     end
   end
   
-  def find_videos(keyword) #検索キーワードと検索範囲を変えれるように引数に値を取っています
+  def find_videos(keyword) 
     service = Google::Apis::YoutubeV3::YouTubeService.new
     service.key = ENV['GOOGLE_MAP_API_KEY']
     next_page_token = nil
@@ -26,30 +25,26 @@ class VideosController < ApplicationController
       max_results: 10,
       order: :date,
       page_token: next_page_token,
-      # published_after: after.iso8601,
-      # published_before: before.iso8601
+
     }
     service.list_searches(:snippet, opt)
   end
  
   def search
     @youtube_data = find_videos(params[:keyword])
-    # binding.pry
     @video = Video.new
     @places = Place.all
-    # render 'videos/new'
   end
   
-  def place_search(place_params)
-    @place = Place.find(place_params[:id])
+  def place
+    @place = Place.find(params[:places_id])
+    @video = Video.new
+    @places = Place.all
+    # binding.pry
   end
 
-  def place_params
-    params.require(:place).permit(:id)
-  end  
-  
   def video_params
-    params.require(:video).permit(:video_id,:places_id)
+    params.require(:video).permit(:video_id,:places_id,:latitude,:longitude)
   end
   
   def youtube_search_params

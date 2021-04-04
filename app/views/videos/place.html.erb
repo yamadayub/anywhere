@@ -1,14 +1,12 @@
-<%= form_with model: @video do |v| %>
-  <p class="form-group field">
-    <%= v.label :places_id, 'Place', class: "control-label" %>
-    <%= v.collection_select :places_id, @places, :id, :name, class: "form-control" %>
-    <input type="button" id="place_select" value="select" />
-  </p>
+<button type="button" class="btn btn-primary">Place: <%= @place.name%></button>
   
   <!-- Map -->
   <div id="map_for_video"></div>
-  
-  <p class="form-group field">
+
+<%= form_with model: @video do |v| %>
+    <%= v.hidden_field :places_id, :value => @place.id %> 
+
+    <p class="form-group field">
     <%= v.label :video_id, 'Youtube Video ID', class: "control-label" %>
     <%= v.text_field :video_id, class: "form-control" %>
   </p>
@@ -69,7 +67,10 @@
 
   // 地図初期化
   function initMap() {
-    latlng = new google.maps.LatLng(34.7019399,135.51002519999997);
+
+    latlng =  { lat: <%= @place.latitude%>, lng: <%= @place.longitude%> };
+    console.log(latlng);
+    
     map = new google.maps.Map(document.getElementById('map_for_video'), {
       center: latlng,
       zoom: 16,
@@ -78,16 +79,31 @@
     // マーカー設定
     marker = new google.maps.Marker({
       position: latlng,
-      map: map
+      map: map,
+    });
+    
+    // マップをクリックで位置変更
+    map.addListener('click', function(e) {
+      console.log(e.latLng);
+      getClickLatLng(e.latLng, map);
+
     });
   }
   
+  function getClickLatLng(lat_lng, map) {
+    //マーカーの緯度経度でUpdate
+    document.getElementById('video_latitude').value=lat_lng.lat();
+    document.getElementById('video_longitude').value=lat_lng.lng();
 
-  $("#place_select").click(function() {
-		// const str1 = document.getElementById("video_places_id");
-		document.getElementById('video_latitude').value=lat;
-	});
-
+    // マーカーを設置
+    marker.setMap(null);
+    marker = new google.maps.Marker({
+      position: lat_lng,
+      map: map,
+    });
+    // 座標の中心をずらす
+    map.panTo(lat_lng);
+  }
 
 </script>
 

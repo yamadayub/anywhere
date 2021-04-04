@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :places
   resources :videos, only: [:new, :create]
   get 'videos/search', to: 'videos#search'
-
+  get 'videos/place', to: 'videos#place'
 end
