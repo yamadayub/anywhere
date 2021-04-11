@@ -44,7 +44,7 @@ class VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:video_id,:places_id,:latitude,:longitude)
+    params.require(:video).permit(:video_id,:places_id,:latitude, :longitude)
   end
   
   def youtube_search_params

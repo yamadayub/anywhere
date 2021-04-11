@@ -49,8 +49,12 @@
   let map;
   let marker = [];
   let markerLatLng = [];
+  let infoWindow = [];
   let latlng =  { lat: <%= @place.latitude%>, lng: <%= @place.longitude%> };
-  console.log(latlng);
+  
+  <% p @place %>
+  <% p @videos %>
+
     
   function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -59,12 +63,25 @@
     });
     
     <% @videos.each_with_index do |v,i| %>
-    markerLatLng[<%= i%>] = new google.maps.LatLng({lat: <%= v.latitude %>, lng: <%= v.longitude %>});
-    marker[<%= i%>] = new google.maps.Marker({ // マーカーの追加
-    position: markerLatLng[<%= i%>], // マーカーを立てる位置を指定
-    map: map // マーカーを立てる地図を指定
-    });
-  <% end %>  
+      <% if v.latitude && v.longitude %>
+      markerLatLng[<%= i%>] = new google.maps.LatLng({lat: <%= v.latitude %>, lng: <%= v.longitude %>});
+      marker[<%= i%>] = new google.maps.Marker({ // マーカーの追加
+        position: markerLatLng[<%= i%>], // マーカーを立てる位置を指定
+        map: map // マーカーを立てる地図を指定
+      });
+      
+      infoWindow[<%= i%>] = new google.maps.InfoWindow({ // 吹き出しの追加
+          content: '<%= v.video_id %>' // 吹き出しに表示する内容
+      });
+
+      console.log(infoWindow[<%= i%>]) //設定はできている
+
+      marker[<%= i%>].addListener('click', function() { // マーカーをクリックしたとき
+       infoWindow[<%= i%>].open(map, marker[<%= i%>]); // 吹き出しの表示
+      });
+      
+      <% end %>
+    <% end %>  
   }
 </script>
 
