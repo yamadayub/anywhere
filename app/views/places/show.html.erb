@@ -1,6 +1,6 @@
-<!-- First Videos -->
+<!-- Top Video -->
 
-<div id="top_video">
+<div class="top_video" id="top_video">
   <% if @videos.present? %>
     <%= video(video_id: @videos.first.video_id)  %>
   <% else %>
@@ -20,10 +20,12 @@
 <div id="map"></div>
 
 <!-- Embed Videos -->
-<div id="other_videos">
+<div id="video_list">
   <% if @videos.present? %>
     <% @videos.each_with_index do|video,i| %>
-      <%= video(video_id: video.video_id) unless i == 0 %>
+      <div id="video_<%= i+1 %>">
+        <%= video(video_id: video.video_id) %>
+      </div>
     <% end %>
   <% else %>
   <% end %>
@@ -78,6 +80,12 @@
 
       marker[<%= i%>].addListener('click', function() { // マーカーをクリックしたとき
        infoWindow[<%= i%>].open(map, marker[<%= i%>]); // 吹き出しの表示
+       
+       //ここにtop_videoの書き換え処理を入れればよい
+       $('#top_video').replaceWith($('#video_<%= i+1 %>'));
+       $('#video_<%= i+1 %>').clone().appendTo('#video_list');
+       $('#video_<%= i+1 %>').attr('id', 'top_video');
+       
       });
       
       <% end %>
