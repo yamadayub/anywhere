@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :videos, only: [:new, :create]
   get 'videos/search', to: 'videos#search'
   get 'videos/place', to: 'videos#place'
+  get 'index2', to: 'static_pages#index2' 
 end

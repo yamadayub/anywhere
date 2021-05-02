@@ -1,0 +1,16 @@
+<div class="container-fluid" style="background-color: #d5e8db;">
+  <div class="row p-1">
+    <% @places.each_with_index do |place,i| %>
+      <div class="col-sm-4 col-lg-2 p-1" align='center' style="background-color: #d5e8db;">
+        <%= link_to place_path(place.id) do %>
+          <% if i%2==0 %>
+            <%= image_tag 'door1.png', :size => '180x280' %>
+          <% else %>
+            <%= image_tag 'door2.png', :size => '180x280' %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
